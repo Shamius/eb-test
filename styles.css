@@ -1,0 +1,175 @@
+:root{
+  --bg:#0b0c10;
+  --card:#11131a;
+  --muted:#a7adbf;
+  --text:#eef1ff;
+  --line:#262a36;
+  --accent:#6aa4ff;
+  --accent2:#8cffd6;
+  --warn:#ffcd6a;
+  --bad:#ff6a8a;
+  --good:#79ff6a;
+  --shadow: 0 20px 60px rgba(0,0,0,.35);
+  --radius: 18px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  background: radial-gradient(1200px 800px at 10% 10%, rgba(106,164,255,.22), transparent 60%),
+              radial-gradient(900px 700px at 90% 20%, rgba(140,255,214,.14), transparent 60%),
+              var(--bg);
+  color:var(--text);
+}
+
+.app{max-width:980px;margin:28px auto;padding:0 16px 48px}
+
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 16px;border:1px solid var(--line);border-radius:var(--radius);
+  background:rgba(17,19,26,.85);backdrop-filter: blur(8px);box-shadow:var(--shadow);
+}
+
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:40px;height:40px;border-radius:14px;display:grid;place-items:center;
+  border:1px solid var(--line);
+  background: linear-gradient(135deg, rgba(106,164,255,.25), rgba(140,255,214,.12));
+}
+
+.title{font-weight:700}
+.subtitle{color:var(--muted);font-size:13px;margin-top:2px}
+
+.card{
+  margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);
+  background:rgba(17,19,26,.88);backdrop-filter: blur(8px);box-shadow:var(--shadow);
+}
+.hidden{display:none}
+
+h1{font-size:26px;margin:6px 0 10px}
+h2{font-size:18px;margin:18px 0 10px}
+p{line-height:1.5}
+.muted{color:var(--muted)}
+.hint{font-size:13px}
+
+.grid2{margin-top:14px;display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+
+.panel{
+  border:1px solid var(--line);border-radius:16px;padding:14px 14px 10px;
+  background:rgba(10,12,16,.55);
+}
+
+.field{display:grid;gap:6px;margin:10px 0 12px;font-size:14px}
+input[type="text"], textarea{
+  width:100%;border-radius:14px;border:1px solid var(--line);
+  padding:10px 12px;background:rgba(0,0,0,.25);color:var(--text);outline:none;
+}
+textarea{min-height:110px;resize:vertical}
+input[type="text"]:focus, textarea:focus{border-color: rgba(106,164,255,.7)}
+
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted)}
+.check input{margin-top:3px}
+
+.btn{
+  border-radius:14px;border:1px solid var(--line);
+  padding:10px 14px;background:rgba(0,0,0,.18);color:var(--text);cursor:pointer;
+}
+.btn:hover{border-color: rgba(106,164,255,.55)}
+.btn:active{transform: translateY(1px)}
+.btn-primary{
+  background: linear-gradient(135deg, rgba(106,164,255,.95), rgba(140,255,214,.65));
+  border-color:transparent;color:#081018;font-weight:700;
+}
+.btn-ghost{background: rgba(0,0,0,.12)}
+
+.footer{margin-top:14px;display:flex;justify-content:space-between;font-size:12px}
+
+.progress-row{display:flex;align-items:center;gap:12px}
+.progress{
+  flex:1;height:10px;border-radius:999px;border:1px solid var(--line);
+  background:rgba(0,0,0,.18);overflow:hidden;
+}
+.progress-bar{
+  height:100%;width:0%;
+  background: linear-gradient(90deg, rgba(106,164,255,.95), rgba(140,255,214,.65));
+}
+.progress-text{font-size:13px;color:var(--muted);white-space:nowrap}
+
+.q-meta{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.pill{
+  font-size:12px;border:1px solid var(--line);border-radius:999px;
+  padding:6px 10px;background:rgba(0,0,0,.18);
+}
+.pill-soft{color:var(--muted)}
+.question{margin-top:14px}
+
+.answer{
+  margin-top:14px;border:1px solid var(--line);border-radius:16px;
+  padding:12px;background:rgba(0,0,0,.14);
+}
+.option{
+  display:flex;gap:10px;align-items:flex-start;padding:10px 10px;border-radius:14px;
+  border:1px solid transparent;
+}
+.option:hover{background: rgba(255,255,255,.03);border-color: rgba(106,164,255,.25)}
+.option input{margin-top:3px}
+
+.scale{display:grid;grid-template-columns: repeat(5, 1fr);gap:10px;margin-top:10px}
+.scale label{
+  border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center;
+  cursor:pointer;background: rgba(0,0,0,.12);
+}
+.scale input{display:none}
+.scale input:checked + span{
+  display:block;border-radius:12px;padding:8px 6px;
+  background: rgba(106,164,255,.25);
+  border:1px solid rgba(106,164,255,.55);
+}
+.scale span{display:block;color:var(--text)}
+
+.nav{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.nav-right{display:flex;gap:10px;align-items:center}
+.warn{margin-top:10px;min-height:22px}
+.warn.show{color:var(--warn)}
+
+.results-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+@media (max-width:640px){.results-head{flex-direction:column}}
+.scorebox{
+  border:1px solid var(--line);border-radius:18px;padding:12px 14px;
+  min-width:180px;background: rgba(0,0,0,.14);
+}
+.score{font-size:34px;font-weight:800;line-height:1}
+
+.section{margin-top:18px}
+.kpi{
+  border:1px solid var(--line);border-radius:16px;padding:12px 12px;
+  background: rgba(0,0,0,.12);margin:10px 0;
+}
+.kpi h3{margin:0 0 6px;font-size:16px}
+.kpi .small{font-size:13px;color:var(--muted)}
+.bar{
+  height:10px;border-radius:999px;border:1px solid var(--line);
+  background: rgba(0,0,0,.18);overflow:hidden;margin-top:10px;
+}
+.bar > div{
+  height:100%;width:0%;
+  background: linear-gradient(90deg, rgba(106,164,255,.95), rgba(140,255,214,.65));
+}
+
+.table{width:100%;border-collapse:collapse;margin-top:10px}
+.table th,.table td{
+  border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top;
+}
+.table th{color:var(--muted);font-weight:600;font-size:13px}
+.tag{
+  display:inline-block;padding:4px 8px;border-radius:999px;border:1px solid var(--line);
+  font-size:12px;background: rgba(0,0,0,.14);
+}
+.tag.good{border-color: rgba(121,255,106,.45); color: rgba(121,255,106,.95)}
+.tag.ok{border-color: rgba(255,205,106,.45); color: rgba(255,205,106,.95)}
+.tag.bad{border-color: rgba(255,106,138,.45); color: rgba(255,106,138,.95)}
+
+.actions{display:flex;gap:10px;flex-wrap:wrap}

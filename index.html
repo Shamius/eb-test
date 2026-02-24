@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Тест: работа с экономическим покупателем (Миллер–Хайман)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">◎</div>
+        <div>
+          <div class="title">Онлайн-тест</div>
+          <div class="subtitle">Работа с экономическим покупателем (подход Миллер–Хайман)</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button id="btnRestart" class="btn btn-ghost" type="button" title="Начать заново">Сброс</button>
+      </div>
+    </header>
+
+    <main class="card" id="screenIntro">
+      <h1>Проверим, как ты работаешь с экономическим покупателем</h1>
+      <p class="muted">
+        Экономический покупатель — тот, у кого «последнее слово» и кто контролирует бюджет решения.
+        В сложных B2B-сделках именно доступ к этому человеку и разговор на языке бизнеса часто определяет исход.
+      </p>
+
+      <div class="grid2">
+        <div class="panel">
+          <h2>Как устроен тест</h2>
+          <ul>
+            <li>Смешанные типы вопросов: варианты, шкалы, открытые ответы.</li>
+            <li>У вопросов есть «вес» — то, насколько они важны.</li>
+            <li>Открытые ответы оцениваются по рубрике (ключевые элементы), алгоритм прозрачен.</li>
+            <li>В конце — сильные стороны и зоны улучшения по компетенциям.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2>Перед стартом</h2>
+          <label class="field">
+            <span>Твоё имя (необязательно)</span>
+            <input id="inpName" type="text" placeholder="Например, Шамиль" autocomplete="off" />
+          </label>
+
+          <label class="check">
+            <input id="chkShuffle" type="checkbox" checked />
+            <span>Перемешивать вопросы и варианты ответов</span>
+          </label>
+
+          <button id="btnStart" class="btn btn-primary" type="button">Начать тест</button>
+          <p class="hint">Данные никуда не отправляются — всё считается в браузере.</p>
+        </div>
+      </div>
+
+      <footer class="footer muted">
+        <span>Версия: <span id="buildInfo"></span></span>
+      </footer>
+    </main>
+
+    <main class="card hidden" id="screenQuiz" aria-live="polite">
+      <div class="progress-row">
+        <div class="progress">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <div class="progress-text" id="progressText">Вопрос 1 из 1</div>
+      </div>
+
+      <div class="q-meta">
+        <span class="pill" id="pillDimension">Компетенция</span>
+        <span class="pill pill-soft" id="pillWeight">Вес: 1</span>
+      </div>
+
+      <h2 class="question" id="qText">Текст вопроса</h2>
+      <p class="muted" id="qHint"></p>
+
+      <div id="answerArea"></div>
+
+      <div class="nav">
+        <button id="btnPrev" class="btn btn-ghost" type="button">Назад</button>
+        <div class="nav-right">
+          <button id="btnSkip" class="btn btn-ghost" type="button">Пропустить</button>
+          <button id="btnNext" class="btn btn-primary" type="button">Дальше</button>
+        </div>
+      </div>
+      <div class="warn muted" id="warnText" role="status"></div>
+    </main>
+
+    <main class="card hidden" id="screenResults">
+      <div class="results-head">
+        <div>
+          <h1 id="resTitle">Результаты</h1>
+          <p class="muted" id="resSubtitle"></p>
+        </div>
+        <div class="scorebox">
+          <div class="score" id="overallScore">0%</div>
+          <div class="muted">общий уровень</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>Сильные стороны</h2>
+        <div id="strengths"></div>
+      </section>
+
+      <section class="section">
+        <h2>Что улучшить в первую очередь</h2>
+        <div id="improvements"></div>
+      </section>
+
+      <section class="section">
+        <h2>Профиль по компетенциям</h2>
+        <div id="dimensionTable"></div>
+      </section>
+
+      <section class="section">
+        <h2>Разбор открытых ответов (как сработала рубрика)</h2>
+        <div id="openReview"></div>
+      </section>
+
+      <section class="section">
+        <div class="actions">
+          <button id="btnCopy" class="btn btn-ghost" type="button">Скопировать краткий итог</button>
+          <button id="btnDownload" class="btn btn-ghost" type="button">Скачать JSON-отчёт</button>
+          <button id="btnAgain" class="btn btn-primary" type="button">Пройти ещё раз</button>
+        </div>
+        <p class="hint muted">Тест автономный: всё считается в браузере.</p>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
