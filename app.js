@@ -118,7 +118,7 @@
     const text = makeShortSummary(report);
     navigator.clipboard.writeText(text).then(() => {
       toast("Итог скопирован.");
-    }).catch(() => toast("Не получилось скопировать. Можно выделить текст вручную."));
+    }).catch(() => toast("Не получилось скопировать."));
   });
 
   btnDownload?.addEventListener("click", () => {
@@ -189,7 +189,7 @@
     pillWeight.textContent = `Вес: ${q.weight ?? 1}`;
 
     qText.textContent = q.text;
-    qHint.textContent = q.hint || "";
+    qHint.textContent = q.hint || ""; // для открытых мы hints не задаём
 
     answerArea.innerHTML = "";
     answerArea.appendChild(renderAnswerControl(q));
@@ -243,10 +243,8 @@
       wrap.appendChild(scale);
     } else if (q.type === "open"){
       const id = "q_" + q.id;
-      wrap.appendChild(el("textarea", {id, placeholder:"Напиши ответ здесь…"}));
-      if (q.rubric?.note){
-        wrap.appendChild(el("p", {class:"muted hint"}, q.rubric.note));
-      }
+      // ВАЖНО: никаких подсказок под открытым вопросом
+      wrap.appendChild(el("textarea", {id, placeholder:""}));
     } else {
       wrap.appendChild(el("p", {class:"muted"}, "Неизвестный тип вопроса: " + q.type));
     }
@@ -338,7 +336,7 @@
       for (const i of idxs){
         pts += (q.options?.[i]?.score ?? 0);
       }
-      const max = q.multiMaxScore ?? pts;
+      const max = q.multiMaxScore ?? Math.max(0, pts);
       return {points: clamp(pts, 0, max), maxPoints: max};
     }
 
@@ -366,7 +364,7 @@
       return {
         points: pts,
         maxPoints: rubric.maxPoints || 10,
-        details: { found, text: ans.text || "", note: rubric.note || "" }
+        details: { found, text: ans.text || "" }
       };
     }
 
@@ -405,7 +403,6 @@
           score: s.points,
           maxScore: s.maxPoints,
           found: s.details?.found || [],
-          note: s.details?.note || "",
           weight: w,
         });
       }
@@ -535,7 +532,7 @@
           box.appendChild(ul);
         } else {
           box.appendChild(el("div", {class:"small muted"},
-            "Рубрика не нашла ключевые элементы. Подсказка: добавь маркеры деньги/риск/срок/следующий шаг."
+            "Рубрика не нашла ключевые элементы (по своим формальным признакам)."
           ));
         }
 
